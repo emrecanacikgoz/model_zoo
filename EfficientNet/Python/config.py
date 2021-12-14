@@ -16,8 +16,8 @@ model_configs = [
 
 # Phi values for each version of EfficientNet[b0-b7]
 phi_values = {
-    # tuple of: (phi_value, resolution, drop_rate)
-    "b0": (0, 224, 0.2),  # alpha, beta, gamma, depth = alpha ** phi
+    # (phi_value, resolution, drop_rate)
+    "b0": (0, 224, 0.2),  # alpha, beta, gamma
     "b1": (0.5, 240, 0.2),
     "b2": (1, 260, 0.3),
     "b3": (2, 300, 0.3),
