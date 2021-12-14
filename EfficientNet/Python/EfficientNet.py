@@ -40,7 +40,7 @@ class sne_conv(nn.Module):
     def __init__(self, in_channels, reduced_dim):
         super(sne_conv, self).__init__()
         self.Squeeze_and_Excitation = nn.Sequential(
-            nn.AdaptiveAvgPool2d(1), # C x H x W -> C x 1 x 1
+            nn.AdaptiveAvgPool2d(1), 
             nn.Conv2d(in_channels, reduced_dim, 1),
             nn.ReLU(),
             nn.Conv2d(reduced_dim, in_channels, 1),
@@ -66,7 +66,7 @@ class mb_conv(nn.Module):
         self.flag_residual = in_channels == out_channels and stride == 1
         hidden_dim = in_channels * expand_ratio
         self.flag_expand = in_channels != hidden_dim
-        reduced_dim = int(in_channels / reduction)  # for squeeze excitation
+        reduced_dim = int(in_channels / reduction)  
 
         if self.flag_expand:
             self.expand_conv = cnn_bn(in_channels, hidden_dim, kernel_size=1, stride=1, padding=0, )
@@ -96,7 +96,7 @@ class EfficientNet(nn.Module):
         last_channels = ceil(1280 * width_factor)
         self.pool = nn.AdaptiveAvgPool2d(1)
         self.backbone = self.model_layers(width_factor, depth_factor, last_channels)
-        self.fc = nn.Linear(last_channels, num_classes)  # classification layer / last layer
+        self.fc = nn.Linear(last_channels, num_classes) 
 
 
     def compound_scaling(self, version, alpha=1.2, beta=1.1):
@@ -125,7 +125,7 @@ class EfficientNet(nn.Module):
                         expand_ratio=expand_ratio,
                         stride=stride if layer == 0 else 1,
                         kernel_size=kernel_size,
-                        padding=kernel_size // 2,  # if k=1:pad=0, k=3:pad=1, k=5:pad=2
+                        padding=kernel_size // 2, 
                     )
                 )
                 in_channels = out_channels
