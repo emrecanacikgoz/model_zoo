@@ -46,5 +46,7 @@
 # To Do's
 - [ ] vggs
 - [ ] mv2
+- [ ] senet
+- [ ] shufflenet
 - [ ] googlenet
 - [ ] unet
